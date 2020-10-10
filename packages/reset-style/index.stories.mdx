@@ -1,0 +1,47 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+
+export const Hoge = (...props) => <div>{JSON.stringify(props)}</div>;
+
+# Hi
+
+<Meta title="MDX/Checkbox" component={Hoge} />
+
+# Hi
+
+export const Template = () => <Hoge />;
+
+<Canvas>
+  <Story
+    name="Unchecked"
+    args={{
+      label: "Unchecked",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story
+    name="Checked"
+    args={{
+      label: "Unchecked",
+      checked: true,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story
+    name="Secondary"
+    args={{
+      label: "Secondary",
+      checked: true,
+      appearance: "secondary",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
