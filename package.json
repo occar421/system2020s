@@ -1,9 +1,15 @@
 {
-  "name": "system2020s",
-  "version": "0.1.0",
-  "description": "New normal of reset-css for sustainable SPA development.",
-  "repository": "https://github.com/occar421/system2020s.git",
-  "author": "MasuqaT <occar@hotmail.co.jp>",
+  "name": "@system2020s/system2020s",
+  "description": "New normal of style set for sustainable Web development.",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
   "license": "MIT",
-  "private": false
+  "repository": "https://github.com/occar421/system2020s.git",
+  "bugs": {
+    "url": "https://github.com/occar421/system2020s/issues"
+  },
+  "author": "MasuqaT <occar@hotmail.co.jp>"
+
 }
