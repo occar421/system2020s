@@ -1,0 +1,15 @@
+{
+  "name": "@system2020s/reset-style",
+  "version": "0.1.0",
+  "description": "New normal of reset style for sustainable Web development.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/occar421/system2020s.git",
+    "directory": "packages/reset-css"
+  },
+  "bugs": {
+    "url": "https://github.com/occar421/system2020s/issues"
+  },
+  "author": "MasuqaT <occar@hotmail.co.jp>"
+}
