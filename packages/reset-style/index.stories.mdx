@@ -11,13 +11,14 @@ export const Template = ({ label, checked = false }) => {
     () =>
       css`
         color: pink;
+        text-decoration: underline;
       `,
     []
   );
   return (
-    <div className={style} aria-checked={checked}>
+    <a className={style} aria-checked={checked}>
       {label}
-    </div>
+    </a>
   );
 };
 
