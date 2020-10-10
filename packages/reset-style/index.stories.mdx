@@ -1,14 +1,25 @@
 import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import { useMemo } from "react";
+import { css } from "emotion";
 
-export const Hoge = (...props) => <div>{JSON.stringify(props)}</div>;
-
-# Hi
-
-<Meta title="MDX/Checkbox" component={Hoge} />
+<Meta title="MDX/Checkbox" />
 
 # Hi
 
-export const Template = () => <Hoge />;
+export const Template = ({ label, checked = false }) => {
+  const style = useMemo(
+    () =>
+      css`
+        color: pink;
+      `,
+    []
+  );
+  return (
+    <div className={style} aria-checked={checked}>
+      {label}
+    </div>
+  );
+};
 
 <Canvas>
   <Story
