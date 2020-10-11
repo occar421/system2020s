@@ -1,0 +1,208 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import { css } from "emotion";
+import { useMemo } from "react";
+
+<Meta title="reset-css/table" />
+
+# Table
+
+export const Template = () => <div />;
+
+<Canvas>
+  <Story
+    name="Minimum"
+    args={{
+      length: 4,
+    }}
+    argTypes={{
+      length: { control: { type: "number", min: 0 } },
+    }}
+  >
+    {({ length }) => (
+      <table>
+        <tr>
+          {[...Array(length)].map((_, i) => (
+            <td key={i}>{i.toString(3)}</td>
+          ))}
+        </tr>
+      </table>
+    )}
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story
+    name="Caption"
+    args={{
+      length: 4,
+      position: "top",
+    }}
+    argTypes={{
+      length: { control: { type: "number", min: 0 } },
+      position: {
+        control: { type: "inline-radio", options: ["top", "bottom"] },
+      },
+    }}
+  >
+    {({ length, position }) => (
+      <table>
+        <caption style={{ captionSide: position }}>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </p>
+        </caption>
+        <tbody>
+          <tr>
+            {[...Array(length)].map((_, i) => (
+              <td key={i}>{i.toString(3)}</td>
+            ))}
+          </tr>
+        </tbody>
+      </table>
+    )}
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story
+    name="Column"
+    args={{
+      length: 10,
+    }}
+    argTypes={{
+      length: { control: { type: "number", min: 1, max: 20 } },
+    }}
+  >
+    {({ length }) => (
+      <table>
+        <colgroup
+          span={Math.floor((length + 1) / 3 + 1)}
+          style={{ backgroundColor: "lightgreen" }}
+        />
+        <colgroup>
+          <col span={1} />
+          <col span={1} style={{ backgroundColor: "lightsalmon" }} />
+        </colgroup>
+        <tbody>
+          <tr>
+            <th />
+            {[...Array(length)].map((_, i) => (
+              <th key={i}>{i + 1}</th>
+            ))}
+          </tr>
+          {[...Array(length)].map((_, i) => (
+            <tr key={i}>
+              <th>{i + 1}</th>
+              {[...Array(length)].map((_, j) => (
+                <td key={j}>{(i + 1) * (j + 1)}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    )}
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story
+    name="Head Body Foot"
+    args={{
+      length: 10,
+    }}
+    argTypes={{
+      length: { control: { type: "number", min: 1, max: 20 } },
+    }}
+  >
+    {({ length }) => (
+      <table>
+        <thead>
+          <tr>
+            <th />
+            {[...Array(length)].map((_, i) => (
+              <th key={i}>{i + 1}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {[...Array(length)].map((_, i) => (
+            <tr key={i}>
+              <th>{i + 1}</th>
+              {[...Array(length)].map((_, j) => (
+                <td key={j}>{(i + 1) * (j + 1)}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+        <tfoot>
+          <tr>
+            <th>sum</th>
+            {[...Array(length)].map((_, i) => (
+              <th key={i}>{(i + 1) * ((length * (length + 1)) / 2)}</th>
+            ))}
+          </tr>
+        </tfoot>
+      </table>
+    )}
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story
+    name="Cells"
+    args={{
+      length: 10,
+    }}
+    argTypes={{
+      length: { control: { type: "number", min: 2, max: 20, step: 2 } },
+    }}
+  >
+    {({ length }) => {
+      const BASE = 4;
+      const cellStyle = useMemo(
+        () => css`
+          &[colspan],
+          &[rowSpan] {
+            background-color: pink;
+          }
+        `,
+        []
+      );
+      return (
+        <table>
+          <tbody>
+            {[...Array(length)].map((_, i) => (
+              <tr key={i}>
+                {[...Array(length)].map((_, j) =>
+                  (!(i % BASE === 0 && j % BASE === 0) &&
+                    i % BASE <= 1 &&
+                    j % BASE <= 1) ||
+                  (i % BASE === 0 && j % BASE === BASE / 2 + 1) ||
+                  (j % BASE === 0 && i % BASE === BASE / 2 + 1) ? null : (
+                    <td
+                      key={j}
+                      colSpan={
+                        i % BASE === 0 && (j % BASE) % (BASE / 2) === 0
+                          ? 2
+                          : undefined
+                      }
+                      rowSpan={
+                        j % BASE === 0 && (i % BASE) % (BASE / 2) === 0
+                          ? 2
+                          : undefined
+                      }
+                      className={cellStyle}
+                    >
+                      {(i + 1) * (j + 1)}
+                    </td>
+                  )
+                )}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      );
+    }}
+  </Story>
+</Canvas>
