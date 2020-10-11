@@ -1,6 +1,6 @@
 module.exports = {
   stories: ["../**/*.stories.@(mdx|js|jsx|ts|tsx)"],
-  addons: ["@storybook/addon-controls", "@storybook/addon-docs"],
+  addons: ["@storybook/addon-docs", "@storybook/addon-controls"],
   webpackFinal: async (config) => {
     const postCssLoader = config.module.rules
       .find(({ test }) => test.test(".css"))
